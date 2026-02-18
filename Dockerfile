@@ -16,10 +16,10 @@ RUN chmod -R 775 storage bootstrap/cache
 
 EXPOSE 8080
 
+EXPOSE 8080
+
 CMD php artisan config:clear && \
+    php artisan cache:clear && \
     php artisan migrate --force && \
-    php artisan storage:link && \
-    php -S 0.0.0.0:${PORT} -t public
-
-
+    php artisan serve --host=0.0.0.0 --port=${PORT}
 
