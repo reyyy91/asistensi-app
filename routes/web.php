@@ -35,5 +35,11 @@ Route::post('/simpan', function (Request $request) {
 });
 
 Route::get('/cek-db', function () {
-    return DB::select('SELECT 1');
+    try {
+        \Illuminate\Support\Facades\DB::connection()->getPdo();
+        return "DB CONNECTED";
+    } catch (\Exception $e) {
+        return $e->getMessage();
+    }
 });
+
