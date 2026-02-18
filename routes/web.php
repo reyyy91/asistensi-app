@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use App\Models\Praktikan;
 
 Route::get('/', function () {
@@ -31,4 +32,10 @@ Route::post('/simpan', function (Request $request) {
     ]);
 
     return "Data berhasil disimpan.";
+});
+
+
+// TAMBAHKAN DI BAWAH INI
+Route::get('/cek-db', function () {
+    return DB::select('SELECT 1');
 });
