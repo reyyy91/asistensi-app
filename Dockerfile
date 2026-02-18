@@ -12,17 +12,14 @@ COPY . .
 
 RUN composer install --no-dev --optimize-autoloader
 
-# Set permission
 RUN chmod -R 775 storage bootstrap/cache
-
-# Buat storage link
-RUN php artisan storage:link
-
-# Jalankan migration
-RUN php artisan migrate --force
 
 EXPOSE 8080
 
-CMD php -S 0.0.0.0:${PORT} -t public
+CMD php artisan config:clear && \
+    php artisan migrate --force && \
+    php artisan storage:link && \
+    php -S 0.0.0.0:${PORT} -t public
+
 
 
