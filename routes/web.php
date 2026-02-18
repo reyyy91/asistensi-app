@@ -10,7 +10,7 @@ Route::get('/', function () {
 });
 
 Route::get('/data-praktikan', function () {
-    $data = \App\Models\Praktikan::all();
+    $data = Praktikan::all();
     return view('data', compact('data'));
 });
 
@@ -34,8 +34,6 @@ Route::post('/simpan', function (Request $request) {
     return "Data berhasil disimpan.";
 });
 
-
-// TAMBAHKAN DI BAWAH INI
 Route::get('/cek-db', function () {
     return DB::select('SELECT 1');
 });
